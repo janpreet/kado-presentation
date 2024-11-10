@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Technical Architecture</title>
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+</head>
+<body>
+    <div class="slide-content">
+        <div class="title">Technical Architecture & Design Decisions</div>
+        <div class="point">Key Architecture Decisions:</div>
+        <div class="grid">
+            <div class="chart">
+                <div class="point">Go Language Selection</div>
+                <div class="highlight">
+                    • Strong type system for reliability<br>
+                    • Excellent concurrency support<br>
+                    • Cross-platform compatibility<br>
+                    • Rich infrastructure tooling ecosystem
+                </div>
+            </div>
+            <div class="chart">
+                <div class="point">Modular Bead System</div>
+                <div class="highlight">
+                    • Loose coupling between components<br>
+                    • Flexible configuration management<br>
+                    • Enhanced maintainability<br>
+                    • Simplified testing and debugging
+                </div>
+            </div>
+        </div>
+        <div class="mermaid">
+            graph TB
+                subgraph Kado["Kado Core (Go)"]
+                    A[Configuration Manager] --> B[Bead Processor]
+                    B --> C[Policy Engine]
+                    C --> D[Execution Controller]
+                end
+                
+                subgraph Config["Configuration Layer"]
+                    E[YAML Config] --> A
+                    F[.kd Files] --> A
+                end
+                
+                subgraph Security["Security Layer"]
+                    G[OPA Policies] --> C
+                    H[Keybase Integration] --> A
+                end
+
+                subgraph Tools["Infrastructure Tools"]
+                    I[Ansible] --> D
+                    J[Terraform] --> D
+                    K[Terragrunt] --> D
+                end
+        </div>
+    </div>
+</body>
+</html>

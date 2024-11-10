@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Workflow Example</title>
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+</head>
+<body>
+    <div class="slide-content">
+        <div class="title">Workflow Example</div>
+        <div class="mermaid">
+            sequenceDiagram
+                participant User
+                participant Kado
+                participant Config
+                participant Policy
+                participant Executor
+                participant Tools
+
+                User->>Kado: kado set
+                Kado->>Config: Load Configurations
+                Config->>Kado: Return Parsed Config
+                Kado->>Policy: Validate Policies
+                Policy-->>Kado: Policy Results
+                
+                alt Policy Check Passed
+                    Kado->>Executor: Execute Beads
+                    Executor->>Tools: Run Infrastructure Tools
+                    Tools-->>Executor: Execution Results
+                    Executor-->>Kado: Status Update
+                    Kado-->>User: Success
+                else Policy Check Failed
+                    Kado-->>User: Policy Violation
+                end
+        </div>
+    </div>
+</body>
+</html>

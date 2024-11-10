@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Class Diagram</title>
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+</head>
+<body>
+    <div class="slide-content">
+        <div class="title">Class Diagram</div>
+        <div class="mermaid">
+            classDiagram
+                class Bead {
+                    +String name
+                    +Bool enabled
+                    +String source
+                    +String relay
+                    +validateConfig()
+                    +process()
+                    +executeWithRetry()
+                }
+                
+                class Config {
+                    +Map templates
+                    +Map variables
+                    +Map settings
+                    +loadConfig()
+                    +parseBeads()
+                    +validate()
+                }
+                
+                class PolicyEngine {
+                    +String package
+                    +String path
+                    +Map rules
+                    +evaluate()
+                    +enforce()
+                }
+                
+                class Executor {
+                    +Context ctx
+                    +Map tools
+                    +execute()
+                    +handleFailure()
+                    +retry()
+                }
+                
+                Bead --> Config
+                Bead --> PolicyEngine
+                Bead --> Executor
+        </div>
+    </div>
+</body>
+</html>
