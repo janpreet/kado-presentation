@@ -1,0 +1,48 @@
+%% Kado-High-Level.mermaid
+
+graph TB
+    %% CI/CD Platforms
+    subgraph CICDPlatforms["CI/CD Platforms"]
+        A[Jenkins]
+        B[GitHub Actions]
+        C[Bitbucket Pipelines]
+    end
+
+    %% Kado Container
+    subgraph Kado["Kado Container"]
+        D["Kado Core"]
+        E["Bead Processor"]
+        F["Configuration Manager"]
+        G["Policy Engine (OPA)"]
+        H["Execution Controller"]
+    end
+
+    %% User's Infrastructure Code
+    subgraph UserCode["User's Infrastructure Code"]
+        I["Terraform Configs"]
+        J["Ansible Playbooks"]
+        K["Custom .kd Files"]
+        L["Security Policies"]
+    end
+
+    %% Integrations and Connections
+    A --> |Integrates with| Kado
+    B --> |Integrates with| Kado
+    C --> |Integrates with| Kado
+
+    UserCode --> |"Bring Your Own Code (BYOC)"| Kado
+    I --> F
+    J --> F
+    K --> D
+    L --> G
+
+    %% Internal Kado Connections
+    D --> F
+    F --> G
+    G --> H
+    H --> E
+
+    %% Styles
+    style Kado fill:#5e5b80,stroke:#71cbff,stroke-width:2px,fill-opacity:0.1
+    style UserCode fill:#a3e487,stroke:#ff8787,stroke-width:2px,fill-opacity:0.1
+    style CICDPlatforms fill:#dbd1c2,stroke:#5e5b80,stroke-width:2px,fill-opacity:0.1
