@@ -1,3 +1,4 @@
+[![pages-build-deployment](https://github.com/janpreet/kado-presentation/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/janpreet/kado-presentation/actions/workflows/pages/pages-build-deployment)
 # Kado Presentation
 
 This repository contains a presentation showcasing the **Kado Infrastructure Automation Solution**, an orchestration platform designed to unify infrastructure management through modular configuration. This project highlights core functionalities, architectural decisions, workflow examples, and technical trade-offs involved in Kado’s design.
