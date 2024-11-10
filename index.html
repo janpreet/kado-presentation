@@ -2,19 +2,33 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kado: Infrastructure Management Solution</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <title>Kado Presentation</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="slide-container">
-        <iframe src="slides/slide1.html" id="slide1" class="slide active"></iframe>
-        <iframe src="slides/slide2.html" id="slide2" class="slide"></iframe>
-        <iframe src="slides/slide3.html" id="slide3" class="slide"></iframe>
-        <iframe src="slides/slide4.html" id="slide4" class="slide"></iframe>
-        <iframe src="slides/slide5.html" id="slide5" class="slide"></iframe>
+    <div id="slide1" class="slide active">
+        <div class="slide-content">
+            <div class="logo-container">
+                <img src="img/logo.png" alt="Kado Logo" class="logo">
+            </div>
+            <div class="subtitle">Enterprise-Grade Infrastructure Automation Solution</div>
+            <div class="highlight">
+                "A robust orchestration platform that unifies infrastructure management through modular configuration"
+            </div>
+            <div class="point">Core Challenge:</div>
+            <div class="subpoint">Managing complex infrastructure deployments across multiple tools while maintaining:</div>
+            <ul class="highlight">
+                <li>Configuration consistency</li>
+                <li>Security compliance</li>
+                <li>Deployment reliability</li>
+                <li>Operational efficiency</li>
+                <li>Cross-tool orchestration</li>
+                <li>Policy enforcement</li>
+            </ul>
+        </div>
     </div>
 
+    <!-- Navigation Buttons -->
     <div class="navigation">
         <button class="nav-button" onclick="previousSlide()">Previous</button>
         <button class="nav-button" onclick="nextSlide()">Next</button>
