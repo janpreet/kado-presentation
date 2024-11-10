@@ -2,64 +2,72 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kado Presentation</title>
-    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <div id="slide1" class="slide active">
-        <div class="slide-content">
-            <div class="logo-container">
-                <img src="img/logo.png" alt="Kado Logo" class="logo">
-            </div>
-            <div class="subtitle">Enterprise-Grade Infrastructure Automation Solution</div>
-            <div class="highlight">
-                "A robust orchestration platform that unifies infrastructure management through modular configuration"
-            </div>
-            <div class="point">Core Challenge:</div>
-            <div class="subpoint">Managing complex infrastructure deployments across multiple tools while maintaining:</div>
-            <ul class="highlight">
-                <li>Configuration consistency</li>
-                <li>Security compliance</li>
-                <li>Deployment reliability</li>
-                <li>Operational efficiency</li>
-                <li>Cross-tool orchestration</li>
-                <li>Policy enforcement</li>
-            </ul>
-        </div>
-    </div>
 
-    <!-- Navigation Buttons -->
+    <!-- Slides -->
+    <iframe src="slides/slide1.html" id="slide1" class="slide active"></iframe>
+    <iframe src="slides/slide2.html" id="slide2" class="slide"></iframe>
+    <iframe src="slides/slide3.html" id="slide3" class="slide"></iframe>
+    <iframe src="slides/slide4.html" id="slide4" class="slide"></iframe>
+    <iframe src="slides/slide5.html" id="slide5" class="slide"></iframe>
+
+    <!-- Navigation -->
     <div class="navigation">
-        <button class="nav-button" onclick="previousSlide()">Previous</button>
-        <button class="nav-button" onclick="nextSlide()">Next</button>
+        <button id="prevButton" class="nav-button" onclick="previousSlide()">Previous</button>
+        <button id="nextButton" class="nav-button" onclick="nextSlide()">Next</button>
+        <button id="firstSlideButton" class="nav-button" onclick="goToFirstSlide()" style="display: none;">Back to First Slide</button>
     </div>
 
     <script>
-        let currentSlide = 1;
-        const totalSlides = 5;
+        document.addEventListener('DOMContentLoaded', () => {
+            let currentSlide = 1;
+            const totalSlides = 5;
 
-        function showSlide(n) {
-            document.querySelector('.slide.active').classList.remove('active');
-            document.getElementById(`slide${n}`).classList.add('active');
-        }
+            function showSlide(n) {
+                document.querySelector('.slide.active').classList.remove('active');
+                document.getElementById(`slide${n}`).classList.add('active');
+                updateButtons();
+            }
 
-        function nextSlide() {
-            if (currentSlide < totalSlides) {
-                currentSlide++;
+            function updateButtons() {
+                document.getElementById("prevButton").style.display = currentSlide === 1 ? 'none' : 'block';
+                document.getElementById("nextButton").style.display = currentSlide === totalSlides ? 'none' : 'block';
+                document.getElementById("firstSlideButton").style.display = currentSlide === totalSlides ? 'block' : 'none';
+
+                document.getElementById("prevButton").textContent = `Previous (${currentSlide - 1}/${totalSlides})`;
+                document.getElementById("nextButton").textContent = `Next (${currentSlide + 1}/${totalSlides})`;
+            }
+
+            window.nextSlide = function() {
+                if (currentSlide < totalSlides) {
+                    currentSlide++;
+                    showSlide(currentSlide);
+                }
+            }
+
+            window.previousSlide = function() {
+                if (currentSlide > 1) {
+                    currentSlide--;
+                    showSlide(currentSlide);
+                }
+            }
+
+            window.goToFirstSlide = function() {
+                currentSlide = 1;
                 showSlide(currentSlide);
             }
-        }
 
-        function previousSlide() {
-            if (currentSlide > 1) {
-                currentSlide--;
-                showSlide(currentSlide);
-            }
-        }
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'ArrowRight') nextSlide();
+                if (e.key === 'ArrowLeft') previousSlide();
+            });
 
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'ArrowRight') nextSlide();
-            if (e.key === 'ArrowLeft') previousSlide();
+            updateButtons();
         });
     </script>
 </body>

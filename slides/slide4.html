@@ -2,15 +2,36 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Class Diagram</title>
+    <title>Technical Decisions and Trade-offs</title>
     <script type="module">
         import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
         mermaid.initialize({ startOnLoad: true });
     </script>
+    <link rel="stylesheet" href="../css/styles.css">
 </head>
 <body>
     <div class="slide-content">
-        <div class="title">Class Diagram</div>
+        <div class="title">Technical Decisions and Trade-offs</div>
+        <div class="grid">
+            <div class="chart">
+                <div class="point">Custom .kd Format</div>
+                <div class="highlight">
+                    Trade-off: Custom parsing vs Standard YAML<br>
+                    • Better validation<br>
+                    • Enhanced error handling<br>
+                    • Increased documentation requirements
+                </div>
+            </div>
+            <div class="chart">
+                <div class="point">Security Integration</div>
+                <div class="highlight">
+                    Trade-off: Flexibility vs Security<br>
+                    • OPA for policy validation<br>
+                    • Keybase for secret management<br>
+                    • Tool independence
+                </div>
+            </div>
+        </div>
         <div class="mermaid">
             classDiagram
                 class Bead {
@@ -20,36 +41,21 @@
                     +String relay
                     +validateConfig()
                     +process()
-                    +executeWithRetry()
                 }
                 
                 class Config {
                     +Map templates
                     +Map variables
-                    +Map settings
                     +loadConfig()
                     +parseBeads()
-                    +validate()
-                }
-                
-                class PolicyEngine {
-                    +String package
-                    +String path
-                    +Map rules
-                    +evaluate()
-                    +enforce()
                 }
                 
                 class Executor {
                     +Context ctx
-                    +Map tools
                     +execute()
-                    +handleFailure()
-                    +retry()
                 }
                 
                 Bead --> Config
-                Bead --> PolicyEngine
                 Bead --> Executor
         </div>
     </div>

@@ -2,36 +2,30 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>State Diagram</title>
+    <title>Project Structure and Future Roadmap</title>
     <script type="module">
         import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
         mermaid.initialize({ startOnLoad: true });
     </script>
+    <link rel="stylesheet" href="../css/styles.css">
 </head>
 <body>
     <div class="slide-content">
-        <div class="title">State Diagram</div>
+        <div class="title">Project Structure and Future Roadmap</div>
+        <div class="highlight">
+            "A view of the project layout and roadmap for future enhancements, including expanded support for CDK, error handling, and CI/CD integrations."
+        </div>
         <div class="mermaid">
-            stateDiagram-v2
-                [*] --> LoadConfig: kado set
-                LoadConfig --> ValidateConfig: Parse YAML & .kd
-                ValidateConfig --> ProcessBeads: Config Valid
-                ValidateConfig --> [*]: Config Invalid
-                
-                ProcessBeads --> PolicyCheck: For Each Bead
-                PolicyCheck --> ExecuteTool: Pass
-                PolicyCheck --> FailureState: Fail
-                
-                ExecuteTool --> NextBead: Success
-                ExecuteTool --> RetryLogic: Failure
-                RetryLogic --> ExecuteTool: Retry
-                RetryLogic --> FailureState: Max Retries
-                
-                NextBead --> ProcessBeads: More Beads
-                NextBead --> SuccessState: All Complete
-                
-                SuccessState --> [*]
-                FailureState --> [*]
+            graph LR
+                subgraph Project["Project Structure"]
+                    A[Project Root] --> B[cluster.yaml]
+                    A --> C[beads/*.kd]
+                    A --> D[templates/]
+                    D --> E[ansible/]
+                    D --> F[terraform/]
+                    A --> G[policies/]
+                    G --> H[*.rego]
+                end
         </div>
     </div>
 </body>

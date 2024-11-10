@@ -2,32 +2,53 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Introduction</title>
+    <title>Introduction and Overview</title>
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+    <link rel="stylesheet" href="../css/styles.css">
 </head>
 <body>
     <div class="slide-content">
         <div class="logo-container">
-            <img src="../img/kado_logo.png" alt="Kado Logo" class="logo">
+            <img src="../img/logo.png" alt="Kado Logo" class="logo">
         </div>
-        <div class="subtitle">Enterprise-Grade Infrastructure Automation Solution</div>
+        <div class="title">Kado: Infrastructure Automation Solution</div>
         <div class="highlight">
-            "A robust orchestration platform that unifies infrastructure management through modular configuration"
+            "A modular orchestration platform addressing modern infrastructure challenges with a unified approach."
         </div>
-        <div class="point">Core Challenge:</div>
-        <div class="subpoint">Managing complex infrastructure deployments across multiple tools while maintaining:</div>
-        <div class="grid">
-            <div class="highlight">
-                • Configuration consistency<br>
-                • Security compliance<br>
-                • Deployment reliability<br>
-                • Operational efficiency
-            </div>
-            <div class="highlight">
-                • Cross-tool orchestration<br>
-                • Policy enforcement<br>
-                • Secret management<br>
-                • Audit capabilities
-            </div>
+        <div class="point">Key Objectives:</div>
+        <ul class="highlight-list">
+            <li>Configuration consistency</li>
+            <li>Security compliance</li>
+            <li>Reliability and efficiency</li>
+            <li>Cross-tool orchestration</li>
+            <li>Policy enforcement</li>
+        </ul>
+        <div class="mermaid">
+            graph TB
+            subgraph Kado["Kado Core (Go)"]
+                A[Configuration Manager] --> B[Bead Processor]
+                B --> C[Policy Engine]
+                C --> D[Execution Controller]
+            end
+            
+            subgraph Config["Configuration Layer"]
+                E[YAML Config] --> A
+                F[.kd Files] --> A
+            end
+            
+            subgraph Security["Security Layer"]
+                G[OPA Policies] --> C
+                H[Keybase Integration] --> A
+            end
+
+            subgraph Tools["Infrastructure Tools"]
+                I[Ansible] --> D
+                J[Terraform] --> D
+                K[Terragrunt] --> D
+            end
         </div>
     </div>
 </body>

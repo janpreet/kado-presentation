@@ -2,15 +2,19 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Workflow Example</title>
+    <title>Implementation Workflow</title>
     <script type="module">
         import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
         mermaid.initialize({ startOnLoad: true });
     </script>
+    <link rel="stylesheet" href="../css/styles.css">
 </head>
 <body>
     <div class="slide-content">
-        <div class="title">Workflow Example</div>
+        <div class="title">Implementation Workflow</div>
+        <div class="highlight">
+            "A step-by-step process demonstrating how Kado processes configurations, validates policies, and applies configurations."
+        </div>
         <div class="mermaid">
             sequenceDiagram
                 participant User
@@ -18,23 +22,13 @@
                 participant Config
                 participant Policy
                 participant Executor
-                participant Tools
 
                 User->>Kado: kado set
                 Kado->>Config: Load Configurations
-                Config->>Kado: Return Parsed Config
-                Kado->>Policy: Validate Policies
-                Policy-->>Kado: Policy Results
-                
-                alt Policy Check Passed
-                    Kado->>Executor: Execute Beads
-                    Executor->>Tools: Run Infrastructure Tools
-                    Tools-->>Executor: Execution Results
-                    Executor-->>Kado: Status Update
-                    Kado-->>User: Success
-                else Policy Check Failed
-                    Kado-->>User: Policy Violation
-                end
+                Config->>Policy: Validate Policies
+                Policy-->>Config: Policy Results
+                Config->>Executor: Execute Beads
+                Executor->>Tools: Run Infrastructure Tools
         </div>
     </div>
 </body>

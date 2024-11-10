@@ -7,54 +7,42 @@
         import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
         mermaid.initialize({ startOnLoad: true });
     </script>
+    <link rel="stylesheet" href="../css/styles.css">
 </head>
 <body>
     <div class="slide-content">
-        <div class="title">Technical Architecture & Design Decisions</div>
-        <div class="point">Key Architecture Decisions:</div>
+        <div class="title">Technical Architecture and Core Components</div>
+        <div class="highlight">
+            "Built for efficiency, scalability, and security by leveraging Go, modular components, and policy integration."
+        </div>
         <div class="grid">
             <div class="chart">
-                <div class="point">Go Language Selection</div>
+                <div class="point">Go Language</div>
                 <div class="highlight">
-                    • Strong type system for reliability<br>
-                    • Excellent concurrency support<br>
+                    • Strong concurrency support<br>
+                    • Memory safety<br>
                     • Cross-platform compatibility<br>
-                    • Rich infrastructure tooling ecosystem
+                    • Rich ecosystem for tooling
                 </div>
             </div>
             <div class="chart">
                 <div class="point">Modular Bead System</div>
                 <div class="highlight">
-                    • Loose coupling between components<br>
-                    • Flexible configuration management<br>
-                    • Enhanced maintainability<br>
-                    • Simplified testing and debugging
+                    • Isolates tool configurations<br>
+                    • Scales with infrastructure complexity<br>
+                    • Facilitates testing and debugging
                 </div>
             </div>
         </div>
         <div class="mermaid">
-            graph TB
-                subgraph Kado["Kado Core (Go)"]
-                    A[Configuration Manager] --> B[Bead Processor]
-                    B --> C[Policy Engine]
-                    C --> D[Execution Controller]
-                end
-                
-                subgraph Config["Configuration Layer"]
-                    E[YAML Config] --> A
-                    F[.kd Files] --> A
-                end
-                
-                subgraph Security["Security Layer"]
-                    G[OPA Policies] --> C
-                    H[Keybase Integration] --> A
-                end
-
-                subgraph Tools["Infrastructure Tools"]
-                    I[Ansible] --> D
-                    J[Terraform] --> D
-                    K[Terragrunt] --> D
-                end
+            sequenceDiagram
+                participant Config
+                participant Policy
+                participant Execution
+                Config->>Policy: Validates Configuration
+                Policy-->>Config: Approves / Rejects
+                Config->>Execution: Initiates Actions
+                Execution->>Tools: Applies Configurations
         </div>
     </div>
 </body>

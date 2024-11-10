@@ -1,13 +1,16 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
     margin: 0;
     padding: 0;
     font-family: 'Inter', sans-serif;
     line-height: 1.6;
-    background: #f5f7fa;
-    color: #2d3748;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    background: #dbd1c2;
+    color: #5e5b80;
     height: 100vh;
     overflow: hidden;
 }
@@ -16,139 +19,151 @@ body {
     width: 100vw;
     height: 100vh;
     display: none;
-    background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
-    transition: opacity 0.5s ease-in-out;
+    background: linear-gradient(135deg, #dbd1c2 0%, #e4e8eb 100%);
     opacity: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
     padding: 2rem;
-    box-sizing: border-box;
+    transition: opacity 0.5s ease-in-out;
 }
 
 .slide.active {
-    display: flex;
+    display: block;
     opacity: 1;
 }
 
 .slide-content {
-    max-width: 800px;
-    width: 100%;
-    padding: 2rem;
+    max-width: 1200px;
+    max-height: 100vh;
+    margin: 0 auto;
+    padding: 2.5rem;
     background: white;
     border-radius: 12px;
     box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+   
     overflow-y: auto;
-    text-align: center;
 }
 
 .title {
     font-size: 2.5rem;
     font-weight: 700;
-    color: #1a202c;
+    color: #5e5b80;
     margin-bottom: 1.5rem;
 }
 
 .subtitle {
     font-size: 1.8rem;
     font-weight: 600;
-    color: #4a5568;
+    color: #5e5b80;
     margin-bottom: 1.5rem;
 }
 
 .point {
     font-size: 1.3rem;
     font-weight: 600;
-    color: #2d3748;
+    color: #5e5b80;
     margin: 1.2rem 0;
 }
 
 .subpoint {
     font-size: 1.1rem;
     font-weight: 500;
-    color: #4a5568;
-    margin: 0.5rem 0;
-    text-align: left;
+    color: #5e5b80;
+    margin: 0.8rem 0;
+    padding-left: 1.5rem;
 }
 
 .highlight {
-    background: #ebf8ff;
+    background: #71cbff;
     padding: 1.2rem;
-    border-radius: 6px;
+    border-radius: 8px;
     margin: 1.2rem 0;
-    border-left: 4px solid #4299e1;
-    color: #2c5282;
-    font-weight: 500;
-    text-align: left;
+    border-left: 4px solid #ff8787;
+    color: #5e5b80;
 }
 
 .code {
-    font-family: 'Fira Code', monospace;
-    background: #2d3748;
-    color: #e2e8f0;
-    padding: 1rem;
-    border-radius: 6px;
+    font-family: 'Courier New', monospace;
+    background: #5e5b80;
+    color: #dbd1c2;
+    padding: 1.2rem;
+    border-radius: 8px;
     margin: 1.2rem 0;
-    white-space: pre-wrap;
+    white-space: pre;
+    overflow-x: auto;
     font-size: 0.9rem;
-    line-height: 1.4;
-    text-align: left;
-}
-
-.logo-container {
-    text-align: center;
-    margin-bottom: 1.5rem;
-}
-
-.logo {
-    max-width: 200px;
-    display: inline-block;
 }
 
 .grid {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
     gap: 1.5rem;
     margin: 1.5rem 0;
-    text-align: left;
 }
 
 .chart {
     background: white;
     padding: 1.2rem;
     border-radius: 8px;
-    border: 1px solid #e2e8f0;
+    border: 1px solid #a3e487;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    color: #5e5b80;
 }
 
 .navigation {
     position: fixed;
-    bottom: 1.5rem;
-    right: 1.5rem;
+    bottom: 2rem;
+    right: 2rem;
     display: flex;
     gap: 1rem;
+    z-index: 1000;
 }
 
 .nav-button {
     padding: 0.75rem 1.5rem;
-    background: #4299e1;
+    background: #ff8787;
     color: white;
     border: none;
     border-radius: 6px;
     cursor: pointer;
     font-size: 1rem;
     font-weight: 600;
-    transition: background-color 0.3s ease;
+    transition: all 0.3s ease;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .nav-button:hover {
-    background: #3182ce;
+    background: #a3e487;
+    transform: translateY(-1px);
+}
+
+.logo-container {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.logo {
+    width: 300px;
+    height: 100px;
+}
+
+ul.highlight {
+    list-style-position: inside;
+    padding-left: 1.2rem;
+}
+
+ul.highlight li {
+    margin: 0.5rem 0;
 }
 
 @media (max-width: 768px) {
     .grid {
         grid-template-columns: 1fr;
+    }
+    
+    .slide-content {
+        padding: 1.5rem;
     }
     
     .title {
@@ -157,13 +172,5 @@ body {
 
     .subtitle {
         font-size: 1.5rem;
-    }
-
-    .point {
-        font-size: 1.2rem;
-    }
-
-    .code {
-        font-size: 0.85rem;
     }
 }
