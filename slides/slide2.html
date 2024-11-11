@@ -40,7 +40,7 @@
                 participant Policy
                 participant Execution
                 Config->>Policy: Validates Configuration
-                Policy-->>Config: Approves / Rejects
+                Policy->>Config: Approves / Rejects
                 Config->>Execution: Initiates Actions
                 Execution->>Tools: Applies Configurations
         </div>

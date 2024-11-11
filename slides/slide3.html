@@ -26,7 +26,7 @@
                 User->>Kado: kado set
                 Kado->>Config: Load Configurations
                 Config->>Policy: Validate Policies
-                Policy-->>Config: Policy Results
+                Policy->>Config: Policy Results
                 Config->>Executor: Execute Beads
                 Executor->>Tools: Run Infrastructure Tools
         </div>
